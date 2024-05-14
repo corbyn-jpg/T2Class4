@@ -19,9 +19,27 @@ function getValues(event){
     event.preventDefaults();
 
     let formData = {
-        "name": this.name.value;
-        "bio": this.bio.value;
-        "favColour": this['fav-color'].value;
-        "gender": this.gender.value;
+        "name": this.name.value,
+        "bio": this.bio.value,
+        "favColour": this['fav-color'].value,
+        "gender": this.gender.value,
+        "favFood": []
     }
+    let favFoodItems = document.querySelectorAll(".fav-foods");
+    for(let food of favFoodItems){
+        if(food.checked == favFoodItems){
+            formData['favFood'].push(food.value);
+        }
+    }
+
+    let out = '
+    
+        <p>Name: <span>${formData.name}</span></p>
+        <p>Bio: <span>${formData.bio}</span></p>
+        <p>Fav colour: <span>${formData['favColour']}</span></p>
+        <p>Gender: <span>${formData.gender}</span></p>
+        <p>Fav food: <span>${formData.favFood}</span></p>
+    '
+    
+    document.querySelector(".out code").innerHTML = out;
 }
